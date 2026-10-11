@@ -16,7 +16,8 @@ maxExposure = input.float(150.0, "Maximum exposure %", minval=10, maxval=300, st
 riskBudgetPct = input.float(0.50, "Risk budget %", minval=0.05, maxval=1.0, step=0.05)
 maxDailyLossPct = input.float(2.5, "Daily loss lock %", minval=0.1, step=0.1)
 maxDrawdownPct = input.float(6.5, "Maximum drawdown lock %", minval=0.1, step=0.1)
-pointValue = input.float(syminfo.pointvalue, "Point value", minval=0.000001)
+// Set this to the verified Exness contract point value for the chart symbol.
+pointValue = input.float(1.0, "Point value", minval=0.000001)
 
 logRet = math.log(close / close[1])
 annualVol = ta.stdev(logRet, volLength) * math.sqrt(252.0)
