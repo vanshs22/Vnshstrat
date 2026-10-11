@@ -4,11 +4,15 @@
 // GoCharting Lipi is an indicator language; it cannot place orders or run a
 // strategy backtest. Use the TradingView or MT5 implementation for testing.
 
-indicator("Inst Vol Control 03 - Current Chart")
+indicator("Inst Vol Control 03 - Current Chart", overlay=true)
 
-momentumLength = input(252, "Momentum lookback")
-volLength = input(63, "Volatility lookback")
-trendLength = input(200, "Trend SMA")
+shortHistoryMode = input(false, "Short-history test mode")
+momentumInput = input(252, "Momentum lookback")
+volInput = input(63, "Volatility lookback")
+trendInput = input(200, "Trend SMA")
+momentumLength = shortHistoryMode ? 10 : momentumInput
+volLength = shortHistoryMode ? 5 : volInput
+trendLength = shortHistoryMode ? 20 : trendInput
 targetVolPct = input(5.0, "Target annualized volatility %")
 maxExposurePct = input(150.0, "Maximum exposure %")
 
@@ -19,6 +23,7 @@ annualVol = talib.stdev(barReturn, volLength) * 15.87450787
 eligible = annualVol > 0 and momentum > 0 and close > trend
 exposurePct = eligible ? math.min(maxExposurePct, targetVolPct / (annualVol * 100) * 100) : 0
 
+plot(close, color=color.gray)
 plot(trend, color=color.orange)
 plot(eligible ? close : na, color=color.lime)
 plot(exposurePct, color=color.aqua)
