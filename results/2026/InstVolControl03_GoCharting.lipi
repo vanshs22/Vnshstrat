@@ -17,7 +17,7 @@ trend = talib.sma(close, trendLength)
 barReturn = close / close[1] - 1
 annualVol = talib.stdev(barReturn, volLength) * 15.87450787
 eligible = annualVol > 0 and momentum > 0 and close > trend
-exposurePct = eligible ? min(maxExposurePct, targetVolPct / (annualVol * 100) * 100) : 0
+exposurePct = eligible ? math.min(maxExposurePct, targetVolPct / (annualVol * 100) * 100) : 0
 
 plot(trend, color=color.orange)
 plot(eligible ? close : na, color=color.lime)
