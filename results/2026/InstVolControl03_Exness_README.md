@@ -26,7 +26,7 @@ The `m` suffix is an Exness Standard-account convention reported by Exness docum
 
 ## Important implementation limitation
 
-TradingView’s normal strategy tester executes orders on the chart symbol. It cannot reproduce the true multi-symbol portfolio in one ordinary strategy account. Use the Pine file for chart-level signal validation and alerts; use the MT5 EA for multi-symbol portfolio testing.
+TradingView’s normal strategy tester executes orders on the chart symbol. It cannot reproduce the true multi-symbol portfolio in one ordinary strategy account. The Pine file sizes a chart-symbol test position directly as notional units (`equity × exposure / price`) so you can compare returns without entering a broker point value. This is not exact Exness lot/margin sizing; use the MT5 EA and verified contract specifications for broker-accurate sizing.
 
 The MT5 file does not invent broker contract sizes or costs. It reads contract/tick/volume specifications from the connected MT5 server. Verify the intended Exness Standard server symbols, contract size, volume step, margin, spread, commission, swaps, and trading sessions before testing.
 
