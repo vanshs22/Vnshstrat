@@ -31,3 +31,9 @@ TradingView’s normal strategy tester executes orders on the chart symbol. It c
 The MT5 file does not invent broker contract sizes or costs. It reads contract/tick/volume specifications from the connected MT5 server. Verify the intended Exness Standard server symbols, contract size, volume step, margin, spread, commission, swaps, and trading sessions before testing.
 
 The original Yahoo/ETF strategy results are not Exness-specific and must not be treated as validation for these symbols.
+
+## GoCharting
+
+`InstVolControl03_GoCharting.lipi` is a current-chart Lipi indicator. Paste it into GoCharting’s Lipi Editor and add it to the chart. It calculates the strategy’s current-chart momentum, volatility, trend eligibility, and exposure estimate.
+
+GoCharting’s official Lipi documentation states that Lipi scripts are indicators and do not provide a strategy/order-placement surface or multi-symbol data requests. Therefore this file cannot be a GoCharting Strategy Tester order-execution strategy; use the Pine file for TradingView backtesting or the MT5 EA for multi-symbol Strategy Tester execution.
